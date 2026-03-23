@@ -7,7 +7,7 @@ import SettingsIcon from '@mui/icons-material/Settings';
 const Navbar = () => {
     const { user } = useContext(AuthContext);
 
-    const roleClass = { admin: 'role-admin', manager: 'role-manager', technician: 'role-technician' }[user?.role] || '';
+    const roleClass = { admin: 'role-admin', manager: 'role-manager', technician: 'role-technician' }[user?.role] || '';//roles
 
     return (
         <AppBar position="sticky" className="navbar" sx={{ zIndex: 100 }}>

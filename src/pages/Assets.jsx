@@ -1,3 +1,4 @@
+
 import React, { useState, useEffect, useContext } from 'react';
 import api from '../services/api';
 import { Grid, Card, CardContent, Typography, Box, Chip, Button, Modal, TextField, Divider } from '@mui/material';
@@ -7,7 +8,7 @@ import ThermostatIcon from '@mui/icons-material/Thermostat';
 import LocationOnIcon from '@mui/icons-material/LocationOn';
 import BusinessIcon from '@mui/icons-material/Business';
 import CalendarTodayIcon from '@mui/icons-material/CalendarToday';
-
+//popup modal style
 const modalSx = {
     position: 'absolute', top: '50%', left: '50%',
     transform: 'translate(-50%, -50%)',
@@ -18,7 +19,7 @@ const modalSx = {
     p: 4, borderRadius: 4,
     backdropFilter: 'blur(30px)',
 };
-
+//form field style
 const fieldSx = {
     '& .MuiOutlinedInput-root': {
         color: 'white',
@@ -31,30 +32,30 @@ const fieldSx = {
     '& .MuiInputLabel-root': { color: 'var(--text-muted)' },
     '& input[type="date"]::-webkit-calendar-picker-indicator': { filter: 'invert(1)', opacity: 0.5 },
 };
-
+//asset
 const Assets = () => {
-    const { user } = useContext(AuthContext);
-    const [assets, setAssets] = useState([]);
-    const [open, setOpen] = useState(false);
+    const { user } = useContext(AuthContext);//user authentication from authcontext.jsx
+    const [assets, setAssets] = useState([]);//assets list
+    const [open, setOpen] = useState(false);//popup visibility
     const [newAsset, setNewAsset] = useState({
         asset_id: '', product_name: '', company_name: '', location: '',
         min_temp_celsius: '', max_temp_celsius: '', expiry_date: '', status: 'active'
-    });
+    });//new asset data
 
     useEffect(() => { fetchAssets(); }, []);
 
     const fetchAssets = async () => {
-        try { const res = await api.get('/assets'); setAssets(res.data); }
+        try { const res = await api.get('/assets'); setAssets(res.data); }      //fetch assets(GET)
         catch (err) { console.error(err); }
     };
 
     const handleCreate = async () => {
-        try { await api.post('/assets', newAsset); setOpen(false); fetchAssets(); }
+        try { await api.post('/assets', newAsset); setOpen(false); fetchAssets(); }     //create asset(POST)
         catch (err) { console.error(err); }
     };
-
+    //asset status
     const getStatusChip = (status) => (
-        <Chip
+        <Chip  
             label={status.toUpperCase()}
             size="small"
             sx={{
@@ -65,7 +66,7 @@ const Assets = () => {
             }}
         />
     );
-
+    //Website design
     return (
         <div className="animate-fade-in">
             {/* Page header */}
@@ -78,6 +79,7 @@ const Assets = () => {
                         Manage refrigerated products and their IoT monitoring thresholds.
                     </Typography>
                 </Box>
+                {/*role set to admin - only admin can add assets*/}
                 {user?.role === 'admin' && (
                     <Button
                         variant="contained"
@@ -96,7 +98,7 @@ const Assets = () => {
                 )}
             </Box>
 
-            {/* Asset Cards */}
+            {/* Asset Cards - product name, company name, status*/}
             <Grid container spacing={3}>
                 {assets.map((asset, idx) => (
                     <Grid item xs={12} sm={6} md={3} key={asset.asset_id}>
@@ -145,7 +147,7 @@ const Assets = () => {
                                         <Box>
                                             <Typography variant="caption" sx={{ color: 'var(--text-muted)', display: 'block', lineHeight: 1 }}>Target Range</Typography>
                                             <Typography variant="body2" sx={{ color: '#38bdf8', fontWeight: 600, fontFamily: 'monospace' }}>
-                                                {asset.min_temp_celsius}°C → {asset.max_temp_celsius}°C
+                                                {asset.min_temp_celsius}°C → {asset.max_temp_celsius}°C {/*IoT Threshold Values*/}
                                             </Typography>
                                         </Box>
                                     </Box>
@@ -157,7 +159,7 @@ const Assets = () => {
                                         <Box>
                                             <Typography variant="caption" sx={{ color: 'var(--text-muted)', display: 'block', lineHeight: 1 }}>Expiry Date</Typography>
                                             <Typography variant="body2" sx={{ color: 'white', fontWeight: 500 }}>
-                                                {asset.expiry_date ? new Date(asset.expiry_date).toLocaleDateString('en-IN', { day: '2-digit', month: 'short', year: 'numeric' }) : 'N/A'}
+                                                {asset.expiry_date ? new Date(asset.expiry_date).toLocaleDateString('en-IN', { day: '2-digit', month: 'short', year: 'numeric' }) : 'N/A'}{/*Asset Expiry Date*/}
                                             </Typography>
                                         </Box>
                                     </Box>
@@ -173,7 +175,7 @@ const Assets = () => {
                         </Card>
                     </Grid>
                 ))}
-
+                {/*If no assets are found*/}
                 {assets.length === 0 && (
                     <Grid item xs={12}>
                         <Box sx={{ textAlign: 'center', py: 8, color: 'var(--text-muted)' }}>
@@ -184,7 +186,7 @@ const Assets = () => {
                 )}
             </Grid>
 
-            {/* Add Asset Modal */}
+            {/* Add Asset Modal - Form*/}
             <Modal open={open} onClose={() => setOpen(false)}>
                 <Box sx={modalSx}>
                     <Typography variant="h6" sx={{ mb: 0.5, fontWeight: 700, color: 'white' }}>
@@ -193,7 +195,7 @@ const Assets = () => {
                     <Typography variant="body2" sx={{ color: 'var(--text-muted)', mb: 3 }}>
                         Add a cold storage product for IoT monitoring.
                     </Typography>
-                    <Box sx={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 2 }}>
+                    <Box sx={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 2 }}>      {/*Form Fields(2 columns)*/}
                         {[
                             { label: 'Asset ID (e.g. DMART-05)', key: 'asset_id' },
                             { label: 'Product Name', key: 'product_name' },
@@ -207,7 +209,7 @@ const Assets = () => {
                                 onChange={(e) => setNewAsset({ ...newAsset, [f.key]: e.target.value })}
                                 sx={fieldSx}
                             />
-                        ))}
+                        ))}{/*Form Field Input*/}
                         <TextField fullWidth margin="dense" type="date" label="Expiry Date"
                             InputLabelProps={{ shrink: true }}
                             value={newAsset.expiry_date}

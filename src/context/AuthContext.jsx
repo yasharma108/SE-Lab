@@ -2,13 +2,14 @@ import React, { createContext, useState, useEffect } from 'react';
 import api from '../services/api';
 import { useNavigate } from 'react-router-dom';
 
-export const AuthContext = createContext();
-
+export const AuthContext = createContext();//create global container(storage)
+//provide data to components
 export const AuthProvider = ({ children }) => {
-    const [user, setUser] = useState(null);
-    const [loading, setLoading] = useState(true);
-    const navigate = useNavigate();
+    const [user, setUser] = useState(null);//user data
+    const [loading, setLoading] = useState(true);//loading state(login status)
+    const navigate = useNavigate();//for navigation(redirect pages)
 
+    //auto login on refresh(saved data, restore session(if user already logged in) - Even if i refresh, user stays logged in)
     useEffect(() => {
         const token = localStorage.getItem('token');
         const userData = localStorage.getItem('user');
@@ -18,7 +19,7 @@ export const AuthProvider = ({ children }) => {
         }
         setLoading(false);
     }, []);
-
+    //login function
     const login = async (email, password) => {
         // Hardcoded demo credentials for easy access
         if ((email === 'admin' && (password === 'admin' || password === '123')) || 
@@ -30,19 +31,19 @@ export const AuthProvider = ({ children }) => {
                 email: `${email}@example.com`,
                 role: email.includes('admin') ? 'admin' : (email.includes('manager') ? 'manager' : 'technician')
             };
-            localStorage.setItem('token', 'mock-token');
+            localStorage.setItem('token', 'mock-token');//save in local storage
             localStorage.setItem('user', JSON.stringify(mockUser));
-            setUser(mockUser);
-            navigate('/');
+            setUser(mockUser);//update state
+            navigate('/');//redirect to home page
             return true;
         }
-
+//API login
         try {
             const res = await api.post('/auth/login', { email, password });
-            localStorage.setItem('token', res.data.token);
+            localStorage.setItem('token', res.data.token);//save response
             localStorage.setItem('user', JSON.stringify(res.data.user));
-            setUser(res.data.user);
-            navigate('/');
+            setUser(res.data.user);//update state
+            navigate('/');//redirect to home page
             return true;
         } catch (error) {
             console.error('Login error', error);
@@ -51,14 +52,14 @@ export const AuthProvider = ({ children }) => {
     };
 
     const logout = () => {
-        localStorage.removeItem('token');
+        localStorage.removeItem('token');//clear storage
         localStorage.removeItem('user');
-        setUser(null);
-        navigate('/login');
+        setUser(null);//clear state
+        navigate('/login');//redirect to login
     };
 
     return (
-        <AuthContext.Provider value={{ user, login, logout, loading }}>
+        <AuthContext.Provider value={{ user, login, logout, loading }}>{/*For use in components*/}
             {children}
         </AuthContext.Provider>
     );
