@@ -1,3 +1,4 @@
+
 import React, { useState, useContext } from 'react';
 import { AuthContext } from '../context/AuthContext';
 import { TextField, Button, Alert, InputAdornment, IconButton } from '@mui/material';
@@ -9,27 +10,27 @@ import ThermostatIcon from '@mui/icons-material/Thermostat';
 
 const Login = () => {
     const { login } = useContext(AuthContext);
-    const [email, setEmail] = useState('');
-    const [password, setPassword] = useState('');
-    const [error, setError] = useState('');
-    const [showPass, setShowPass] = useState(false);
-    const [loading, setLoading] = useState(false);
+    const [email, setEmail] = useState('');//Username input(email)
+    const [password, setPassword] = useState('');//input password
+    const [error, setError] = useState('');//error message if login failed
+    const [showPass, setShowPass] = useState(false);//show password button
+    const [loading, setLoading] = useState(false);//loading state
 
     const handleSubmit = async (e) => {
         e.preventDefault();
         setError('');
         setLoading(true);
-        const success = await login(email, password);
+        const success = await login(email, password);//call backend through context
         setLoading(false);
-        if (!success) setError('Invalid username or password. Please try again.');
+        if (!success) setError('Invalid username or password. Please try again.');//error message if login failed
     };
-
+//demo accounts
     const demoAccounts = [
         { role: 'Admin', user: 'admin', badge: 'role-admin' },
         { role: 'Manager', user: 'manager1', badge: 'role-manager' },
         { role: 'Technician', user: 'technician1', badge: 'role-technician' },
     ];
-
+//styling for input fields
     const fieldSx = {
         '& .MuiOutlinedInput-root': {
             color: 'white',
@@ -42,7 +43,7 @@ const Login = () => {
         '& .MuiInputLabel-root': { color: 'rgba(255,255,255,0.55)' },
         '& .MuiInputLabel-root.Mui-focused': { color: 'var(--primary-color)' },
     };
-
+//Design
     return (
         <>
         <div className="login-container">
@@ -50,7 +51,7 @@ const Login = () => {
             <div className="login-orb animate-float" style={{ width: 400, height: 400, background: 'rgba(59,130,246,0.08)', top: -80, left: -100 }} />
             <div className="login-orb" style={{ width: 300, height: 300, background: 'rgba(139,92,246,0.06)', bottom: -60, right: -80, animationDelay: '1.5s' }} />
 
-            <div className="login-form-card">
+            <div className="login-form-card">{/*login form*/}
                 {/* Logo */}
                 <div style={{ textAlign: 'center', marginBottom: '2rem' }}>
                     <div style={{
@@ -73,9 +74,9 @@ const Login = () => {
                     <Alert severity="error" sx={{ mb: 2, borderRadius: '10px', background: 'rgba(239,68,68,0.1)', border: '1px solid rgba(239,68,68,0.3)', color: 'white', '& .MuiAlert-icon': { color: 'var(--danger)' } }}>
                         {error}
                     </Alert>
-                )}
+                )}{/*error message*/}
 
-                <form onSubmit={handleSubmit}>
+                <form onSubmit={handleSubmit}>{/*login form*/}
                     <TextField
                         fullWidth required margin="normal"
                         id="username" label="Username" name="email" autoFocus
@@ -115,7 +116,7 @@ const Login = () => {
                     </Button>
                 </form>
 
-                {/* Demo Accounts */}
+                {/* Demo Accounts  */}
                 <div style={{ marginTop: '1.5rem', padding: '1rem', background: 'rgba(255,255,255,0.03)', borderRadius: '12px', border: '1px solid rgba(255,255,255,0.06)' }}>
                     <p style={{ color: 'var(--text-muted)', fontSize: '0.7rem', fontWeight: 600, textTransform: 'uppercase', letterSpacing: '0.1em', marginBottom: '0.75rem' }}>
                         Demo Accounts (password: admin or 123)

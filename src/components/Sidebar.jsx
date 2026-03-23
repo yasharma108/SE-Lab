@@ -11,7 +11,7 @@ import LogoutRoundedIcon from '@mui/icons-material/LogoutRounded';
 // ─── Main Sidebar ───
 const Sidebar = () => {
     const { user, logout } = useContext(AuthContext);
-
+//which menu items to show
     const getNavItems = () => {
         if (user?.role === 'admin') {
             return [
