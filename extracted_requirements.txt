@@ -1,0 +1,1601 @@
+=== tmp_Report.docx ===
+FieldSense
+
+Field Operations Visibility and Asset Condition Monitoring System
+
+
+
+PART A: PROJECT REQUIREMENTS DOCUMENT
+
+1. Functional Requirements
+
+1. Asset Management:• Add, edit, and delete assets• Store asset details (ID, type, location, installation date, status)• View asset list and history2. Issue Reporting System:• Manual issue reporting• Issue fields (Asset ID, Issue type, Description, Priority, Timestamp)• Update issue status (Open/Assigned/Resolved)• Maintain logs3. Technician Assignment:• Admin assigns technician• Technician updates repair progress• Store resolution notes4. IoT Monitoring Integration:• Sensors send periodic updates• Detect power failure, temperature breach, device offline• Auto-generate issue tickets5. Dashboard:• Total assets• Active issues• Resolved issues• Fault distribution• Recent alerts
+
+2. Non-Functional Requirements
+
+Reliability:• Log failures and sensor events• Handle invalid input safelyPerformance:• Dashboard loads within 2 seconds• Issue creation under 1 secondSecurity:• Role-based login• Password hashing• Secure API endpointsUsability:• Mobile-friendly interface• Simple reporting workflowScalability:• Support increasing number of assets and issues
+
+3. System Architecture Requirements
+
+Frontend: Web interface using HTML/CSS/JavaScript or ReactBackend: REST API using Node.js / Python / PHPDatabase: MySQL or MongoDBCore Tables:UsersAssetsIssuesTechniciansSensorLogs
+
+4. IoT Requirements
+
+Sensors:• Temperature sensor• Power detection sensor• Microcontroller (ESP8266 / ESP32 / Arduino)IoT Workflow:Sensor → Microcontroller → HTTP Request → Backend API → Database → Dashboard Alert
+
+5. Deployment Requirements
+
+• Backend server (local or cloud)• Database server• Git version control• Basic logging enabled
+
+Project Goal
+
+To improve visibility of distributed field assets and reduce manual monitoring by combining issue tracking with optional IoT-based fault detection.
+
+PART B: FEASIBILITY REPORT
+
+1. Introduction
+
+This report evaluates the feasibility of developing FieldSense, a centralized platform designed to monitor distributed field assets using IoT sensor data and manage service workflows efficiently. The system integrates asset lifecycle management, issue tracking, technician assignment, IoT-based anomaly detection, and real-time dashboards.
+
+2. Objective of the Project
+
+• Develop a centralized asset monitoring platform.• Enable proactive fault detection using IoT sensors.• Automate issue ticket generation.• Streamline technician assignments.• Provide real-time operational dashboards.• Reduce downtime and maintenance costs.
+
+3. Scope of the Project
+
+Included:• Asset registration and tracking• Manual issue reporting• Technician assignment• Basic IoT monitoring (temperature, power, device status)• Role-based authentication• Dashboard analytics• Small-scale industrial deployment
+
+4. Problem Statement
+
+Organizations managing distributed equipment (Amul, Hershey, Milky Mist etc) often face delayed fault detection, high downtime, and inefficient service workflows. FieldSense aims to solve these challenges using IoT-based monitoring and structured issue management.
+
+5. Technical Feasibility
+
+Frontend: HTML/CSS/JavaScript or ReactBackend: Node.js / Python / PHPDatabase: MySQL / MongoDBIoT: ESP32 /ESP8266 with sensorsAll required technologies are open-source and achievable within academic scope.
+
+6. Economic Feasibility
+
+Estimated Prototype Cost:
+
+Item
+
+Estimated Cost (INR)
+
+ESP32/ESP8266
+
+₹400–600
+
+Temperature Sensor
+
+₹150–250
+
+Power Sensor
+
+₹200–300
+
+Hosting
+
+Free Tier
+
+Software Tools
+
+Free
+
+
+
+Total estimated prototype cost: ₹1000–₹1500.Benefits include reduced downtime, faster fault detection, and lower operational costs. The cost-to-benefit ratio is favorable.
+
+7. Operational Feasibility
+
+The system integrates smoothly into current workflows.
+
+Current Workflow:Manual monitoring → Delayed reporting → Slow response
+
+Proposed Workflow:Sensor detection → Automatic issue creation → Technician assignment → Real-time tracking
+
+User roles are clearly defined and the interface is simple and mobile-friendly. Therefore, the system is operationally feasible. The system improves workflow by enabling automatic issue detection and structured technician assignment. The interface is simple and mobile-friendly.
+
+8. Legal Feasibility
+
+Uses open-source technologies, ensures password hashing, and does not collect sensitive personal data. Legally compliant.
+
+9. Schedule Feasibility
+
+Estimated duration: 12–14 weeks
+
+Phase
+
+Duration
+
+Requirement Analysis
+
+1 week
+
+Design
+
+2 weeks
+
+Frontend Development
+
+2 weeks
+
+Backend Development
+
+3 weeks
+
+IoT Integration
+
+3 weeks
+
+Testing & Documentation
+
+2 weeks
+
+
+
+Estimated duration: 12–14 weeks including analysis, design, development, IoT integration, testing, and documentation so the timeline is realistic and achievable.
+
+10. Market Feasibility
+
+Market feasibility evaluates demand and adoption potential.
+
+🔹 Target Market
+
+Cold storage companies
+
+Retail chains with vending machines
+
+Power generator operators
+
+Facility management companies
+
+Small-scale industrial plants
+
+🔹 Market Need
+
+Industries increasingly demand:
+
+Real-time monitoring
+
+Reduced downtime
+
+Preventive maintenance systems
+
+IoT-enabled asset tracking
+
+With Industry 4.0 adoption growing rapidly, IoT-based monitoring systems are in high demand.
+
+🔹 Competitive Advantage
+
+FieldSense offers:
+
+Low-cost implementation
+
+Modular architecture
+
+Easy scalability
+
+Academic prototype adaptable for startups
+
+Therefore, the project demonstrates strong market feasibility, especially for SMEs.
+
+Target market includes retail chains, cold storage operators, generator operators, and facility management companies. Growing IoT adoption increases demand for such systems.
+
+11. Practical Feasibility
+
+Uses affordable hardware and well-known technologies. Development can be divided among team members, making it practically achievable within semester constraints.
+
+12. Benefits to Society
+
+• Reduces food and energy wastage• Improves public safety• Encourages digital transformation• Supports small businesses with affordable monitoring• Reduces environmental impact through preventive maintenance
+
+13. Overall Conclusion
+
+FieldSense is technically achievable, economically viable, operationally practical, market-relevant, socially beneficial, and feasible within the academic timeline.
+
+
+
+=== tmp_FieldSense.docx ===
+Strong Antigravity Prompt (FieldSense Full Stack Project)
+
+Project Name
+
+FieldSense – Field Operations Visibility and Asset Condition Monitoring System
+
+
+
+1. Project Description
+
+Build a full-stack web application called FieldSense that monitors distributed field assets using IoT sensors and manages service workflows.
+
+The system should:
+
+Track assets
+
+Receive sensor data from IoT devices
+
+Detect anomalies
+
+Automatically create issue tickets
+
+Assign technicians
+
+Track repair progress
+
+Display operational dashboards
+
+The application should support role-based users and allow real-time monitoring of assets.
+
+
+
+2. System Architecture
+
+Use 3-tier architecture.
+
+Frontend (React + Vite)        ↓Backend API (Node.js + Express)        ↓Database (MySQL)        ↓IoT Devices (ESP32 sensors)
+
+
+
+3. Technology Stack
+
+Frontend
+
+Framework: React.jsBuild Tool: Vite
+
+Libraries:
+
+React Router
+
+Axios
+
+Material UI
+
+Recharts
+
+React Context API
+
+Features:
+
+Responsive UI
+
+Role-based dashboard
+
+Asset monitoring interface
+
+Issue management
+
+Technician panel
+
+Alert notification panel
+
+
+
+Backend
+
+Framework:
+
+Node.js + Express
+
+Libraries:
+
+expresscorsdotenvbcryptjsonwebtokenmysql2prismamulterwinston
+
+Authentication:
+
+JWT authentication
+
+API Type:
+
+REST API
+
+
+
+Database
+
+Database: MySQL
+
+Use relational schema.
+
+
+
+4. User Roles
+
+Admin
+
+Permissions:
+
+Manage users
+
+Add assets
+
+View analytics
+
+Configure thresholds
+
+
+
+Manager
+
+Permissions:
+
+Monitor assets
+
+Report issues
+
+Assign technicians
+
+View alerts
+
+
+
+Technician
+
+Permissions:
+
+View assigned issues
+
+Update repair progress
+
+Add resolution notes
+
+Close issues
+
+
+
+Field Staff
+
+Permissions:
+
+Manually report issues
+
+
+
+5. Folder Structure
+
+Generate project with this structure:
+
+fieldsense/│├── frontend/│   ├── src/│   │   ├── components/│   │   │   ├── Navbar│   │   │   ├── Sidebar│   │   │   ├── AssetCard│   │   │   └── IssueTable│   │   ││   │   ├── pages/│   │   │   ├── Login│   │   │   ├── Dashboard│   │   │   ├── Assets│   │   │   ├── Issues│   │   │   ├── Technicians│   │   │   └── Alerts│   │   ││   │   ├── services/│   │   │   └── api.js│   │   ││   │   ├── context/│   │   │   └── AuthContext.js│   │   ││   │   └── App.jsx│   ││   └── package.json│├── backend/│   ├── controllers/│   ├── routes/│   ├── middleware/│   ├── services/│   ├── models/│   ├── config/│   └── server.js│├── database/│   └── schema.sql│└── README.md
+
+
+
+6. Database Schema
+
+Create MySQL schema.
+
+Users
+
+users------idnameemailpassword_hashrolecreated_at
+
+
+
+Assets
+
+assets------asset_idasset_typelocationinstallation_datestatuscreated_at
+
+
+
+Issues
+
+issues------issue_idasset_idissue_typedescriptionprioritystatusassigned_techniciancreated_atresolved_at
+
+
+
+Technicians
+
+technicians-----------tech_idnamephoneemailstatus
+
+
+
+Sensor Logs
+
+sensor_logs-----------log_idasset_idtemperaturepower_statusdevice_statustimestamp
+
+
+
+Threshold Configuration
+
+threshold_config----------------asset_typemax_temperaturemin_temperaturepower_failure_alert
+
+
+
+7. Backend API Design
+
+Base URL
+
+/api/v1
+
+
+
+Authentication API
+
+Login
+
+POST /api/v1/auth/login
+
+Returns JWT token.
+
+
+
+Asset APIs
+
+GET /api/v1/assetsPOST /api/v1/assetsPUT /api/v1/assets/:idDELETE /api/v1/assets/:id
+
+
+
+Issue APIs
+
+GET /api/v1/issuesPOST /api/v1/issuesPUT /api/v1/issues/:id/assignPUT /api/v1/issues/:id/statusPUT /api/v1/issues/:id/close
+
+
+
+Technician APIs
+
+GET /api/v1/techniciansPOST /api/v1/technicians
+
+
+
+IoT Sensor API
+
+POST /api/v1/sensors/data
+
+Example request:
+
+{  "asset_id": "FRIDGE001",  "temperature": 12,  "power_status": "OFF",  "device_status": "ONLINE"}
+
+Backend logic:
+
+Store sensor log
+
+Compare temperature with threshold
+
+Detect anomaly
+
+Generate alert
+
+Create issue ticket automatically
+
+
+
+Dashboard API
+
+GET /api/v1/dashboard/summary
+
+Return:
+
+total assets
+
+active issues
+
+resolved issues
+
+fault distribution
+
+recent alerts
+
+
+
+8. Frontend Pages
+
+Login Page
+
+Email/password login
+
+JWT authentication
+
+
+
+Dashboard
+
+Widgets:
+
+Total assets
+
+Active issues
+
+Alerts
+
+Fault distribution charts
+
+
+
+Asset Management
+
+Features:
+
+Add asset
+
+Edit asset
+
+View asset history
+
+
+
+Issues Page
+
+Features:
+
+Issue list
+
+Filter by status
+
+Assign technician
+
+Update progress
+
+
+
+Technician Panel
+
+Features:
+
+Assigned issues
+
+Update progress
+
+Add resolution notes
+
+
+
+9. IoT Workflow
+
+Sensor ↓ESP32 ↓HTTP POST ↓Node API ↓MySQL ↓React Dashboard Alert
+
+
+
+10. Alert Detection Logic
+
+Create issue automatically if:
+
+temperature > thresholdORpower failureORdevice offline
+
+
+
+11. Security
+
+Implement:
+
+JWT authentication
+
+Password hashing (bcrypt)
+
+Role-based authorization
+
+Input validation
+
+
+
+12. Performance Requirements
+
+Dashboard loads under 2 seconds
+
+Issue creation under 1 second
+
+Sensor data ingestion under 500 ms
+
+
+
+13. Logging
+
+Use Winston logger to log:
+
+system errors
+
+sensor anomalies
+
+authentication failures
+
+
+
+14. Deployment
+
+Frontend:
+
+Vercel
+
+Backend:
+
+Render / Railway
+
+Database:
+
+MySQL server
+
+
+
+Final Instruction for Antigravity
+
+Generate a complete full-stack project with:
+
+Frontend:
+
+React + Vite + Material UI
+
+Backend:
+
+Node.js + Express
+
+Database:
+
+MySQL
+
+Authentication:
+
+JWT
+
+Charts:
+
+Recharts
+
+Include:
+
+folder structure
+
+database schema
+
+REST APIs
+
+dashboard UI
+
+IoT integration endpoint
+
+
+
+I
+
+
+
+
+
+=== tmp_UseCase.docx ===
+USE CASE SPECIFICATION TABLES FOR FIELDSENSE:-
+
+
+
+
+
+UseCase ID
+
+FS001
+
+Name
+
+Login
+
+Created By
+
+FieldSense
+
+Created Date
+
+24/02/26
+
+Updated By
+
+—
+
+Updated Date
+
+—
+
+Actor
+
+Admin, Manager, Technician
+
+Description
+
+Role-based access based on who’s logging in
+
+Precondition
+
+The user must be a registered employee.
+
+Postcondition
+
+The User is able to login and view a dashboard for them, based on their role.
+
+Normal Flow
+
+Login using ID Number
+
+Based on ID number, it can be found out what role the user has
+
+Based on the role identified, the dashboard will be shown
+
+Alternate Flow
+
+If the User is not registered, register the user
+
+If invalid credentials, terminate the use case
+
+Exceptions
+
+No Exceptions
+
+Frequency of Use
+
+Very Frequently
+
+Priority
+
+Very high
+
+Business Rule
+
+The User based on their roles, can login and see the required dashboard
+
+Assumption
+
+The User is a registered employee
+
+
+
+
+
+UseCase ID
+
+FS002
+
+Name
+
+Asset Management
+
+Created By
+
+FieldSense
+
+Created Date
+
+24/02/26
+
+Updated By
+
+— 
+
+Updated Date
+
+— 
+
+Actor
+
+Admin
+
+Description
+
+This use case is used by Admin in order to control assets i.e to add/delete an asset and Viewing Asset History.
+
+Precondition
+
+The Admin is authorized by the company
+
+Postcondition
+
+Admin is able to view the Asset-related details and control them in his dashboard
+
+Normal Flow
+
+Admin Login
+
+Add or Delete Asset
+
+View Asset History
+
+Alternate Flow
+
+If Admin Credentials are invalid, terminates the use case
+
+Exceptions
+
+No Exceptions
+
+Frequency of Use
+
+Frequently
+
+Priority
+
+High
+
+Business Rule
+
+Admin, after logging in, can control the assets
+
+Assumption
+
+It is assumed that the Admin details are valid
+
+
+
+
+
+UseCase ID
+
+FS003
+
+Name
+
+Staff Details
+
+Created By
+
+FieldSense
+
+Created Date
+
+24/02/26
+
+Updated By
+
+— 
+
+Updated Date
+
+— 
+
+Actor
+
+Admin
+
+Description
+
+Admin can view details of Managers and Technicians
+
+Precondition
+
+Must have a valid Admin ID
+
+Postcondition
+
+Admin is able to view and manage staff.
+
+Normal Flow
+
+Admin Login
+
+View Staff Details
+
+Alternate Flow
+
+If the Admin Details are Invalid, terminate the Use Case
+
+Exceptions
+
+No Exceptions
+
+Frequency of Use
+
+Medium
+
+Priority
+
+High
+
+Business Rule
+
+Admin, after logging in can check Staff details
+
+Assumption
+
+It is assumed that staff details are valid
+
+
+
+
+
+UseCase ID
+
+FS004
+
+Name
+
+Configure Thresholds
+
+Created By
+
+FieldSense
+
+Created Date
+
+24/02/26
+
+Updated By
+
+— 
+
+Updated Date
+
+— 
+
+Actor
+
+Manager
+
+Description
+
+The Manager can set various threshold values for the Asset
+
+Precondition
+
+The Manager should be able to login with his credentials
+
+Postcondition
+
+Manager is able to set threshold values, which are updated on the IoT device
+
+Normal Flow
+
+Manager Login
+
+Check in dashboard
+
+Click on Asset Information
+
+Set/Update Threshold
+
+Alternate Flow
+
+The Manager has input wrong credentials, the use case will terminate
+
+The IoT device has been disconnected. The connection is to be restored
+
+Exceptions
+
+In case an IoT device is disconnected, issues can be reported by Field staff.
+
+Frequency of Use
+
+Medium
+
+Priority
+
+High
+
+Business Rule
+
+The Manager should be able to set the threshold values for the assets if required(Like for a fridge, he should be able to set the temperature it should have, below which if low, the alert should be generated).
+
+Assumption
+
+The Manager is able to Login and set the values.
+
+
+
+
+
+UseCase ID
+
+FS005
+
+Name
+
+Report Issue
+
+Created By
+
+FieldSense
+
+Created Date
+
+24/02/26
+
+Updated By
+
+— 
+
+Updated Date
+
+— 
+
+Actor
+
+Manager
+
+Description
+
+This use case is used by the manager to detect any anomaly through the Iot Sensors and report the issues in the dashboard.
+
+Precondition
+
+The manager should have valid Login credentials.
+
+Postcondition
+
+The manager will be able to detect anomalies and can report the issues.
+
+Normal Flow
+
+Manager login
+
+Check in dashboard
+
+Detect anomaly through the sensor
+
+Report the exact issues like power failure and cooling failure.
+
+Alternate Flow
+
+The manager has put wrong credentials, then the use case will terminate.
+
+The IoT device has been disconnected. So I can not verify and report any issue.
+
+Exceptions
+
+In case an IoT device is disconnected, issues can be reported by Field staff.
+
+Frequency of Use
+
+Often
+
+Priority
+
+Very High
+
+Business Rule
+
+The manager will be able to report an evolved issue in the system.
+
+Assumption
+
+The manager is a valid employee and can report if an issue has evolved.
+
+
+
+
+
+
+
+UseCase ID
+
+FS006
+
+Name
+
+Assign Technician
+
+Created By
+
+FieldSense
+
+Created Date
+
+24/02/26
+
+Updated By
+
+— 
+
+Updated Date
+
+— 
+
+Actor
+
+Manager
+
+Description
+
+This use case is used by the manager to assign technicians after reporting an issue in the system.
+
+Precondition
+
+The manager should get an alert by the sensors.
+
+Postcondition
+
+The manager will assign a technician who will solve the issue in the system.
+
+Normal Flow
+
+Manager login
+
+Get an alert
+
+Assign a technician
+
+Check status
+
+Alternate Flow
+
+The manager has put wrong credentials, then the use case will terminate.
+
+The IoT devices are disconnected so the manager can not assign a technician.
+
+Exceptions
+
+In case an IoT device is disconnected, issues can be reported by Field staff.
+
+Frequency of Use
+
+Often 
+
+Priority
+
+Very High
+
+Business Rule
+
+The manager will be able to assign technicians for resolving an issue that is detected.
+
+Assumption
+
+The manager is a valid employee and can assign technicians.
+
+
+
+
+
+
+
+UseCase ID
+
+FS007
+
+Name
+
+Update Issue
+
+Created By
+
+FieldSense
+
+Created Date
+
+24/02/26
+
+Updated By
+
+— 
+
+Updated Date
+
+— 
+
+Actor
+
+Technician
+
+Description
+
+The technician will give updates about the issues.
+
+Precondition
+
+Technicians should have valid credentials.
+
+Postcondition
+
+The technician will update about the situation.
+
+Normal Flow
+
+Technician login.
+
+The technician will post about the issues.
+
+Update about the situations.
+
+The technician posts Resolution notes on why anomalies occurred for future help.
+
+Alternate Flow
+
+The technician has put wrong credentials then the use case will terminate.
+
+Exceptions
+
+No Exception
+
+Frequency of Use
+
+Frequently
+
+Priority
+
+High
+
+Business Rule
+
+The technician updates the issue and posts a resolution note.
+
+Assumption
+
+The technicians are valid employees and can update about the situation.
+
+
+
+
+
+
+
+UseCase ID
+
+FS008
+
+Name
+
+Resolve Issue
+
+Created By
+
+FieldSense
+
+Created Date
+
+24/02/26
+
+Updated By
+
+— 
+
+Updated Date
+
+— 
+
+Actor
+
+Technician
+
+Description
+
+Technicians will post that issues are resolved and will post resolution notes for future help.
+
+Precondition
+
+Technicians should have valid login credentials.
+
+Postcondition
+
+The technician put a confirmation post that issues have been resolved and will post a resolution note for future help.
+
+Normal Flow
+
+Technician login
+
+The technician will confirm the issues have been resolved.
+
+The technician will leave a resolution note for future help.
+
+Alternate Flow
+
+The technician has put wrong credentials then the use case will terminate.
+
+Exceptions
+
+No Exception.
+
+Frequency of Use
+
+Frequently
+
+Priority
+
+High
+
+Business Rule
+
+The technician resolves the issues and posts a resolution note.
+
+Assumption
+
+The technicians are valid employees and can post resolution notes.
+
+
+
+
+
+UseCase ID
+
+FS009
+
+Name
+
+Receive Sensor Data
+
+Created By
+
+FieldSense
+
+Created Date
+
+24/02/26
+
+Updated By
+
+— 
+
+Updated Date
+
+— 
+
+Actor
+
+Iot Device
+
+Description
+
+The technician is able to receive data from IoT device about the health of the system
+
+Precondition
+
+The IoT device is connected through the internet to the server, where the manager is able to see its details, and the asset details as well.
+
+Postcondition
+
+Manager is able to know about the health of the system through the data sent by the sensor
+
+Normal Flow
+
+The IoT device connected to server via internet
+
+Monitors the asset condition constantly
+
+The details are sent to the manager
+
+The Manager is able to receive the details
+
+Alternate Flow
+
+The device fails to connect to the server, terminate the use case 
+
+The device is unable to send the data, raise a complaint
+
+Exceptions
+
+If the device is disconnected, the manager can see it and raise a complaint
+
+Frequency of Use
+
+Frequently
+
+Priority
+
+High
+
+Business Rule
+
+The sensor receives data continuously.
+
+Assumption
+
+The Asset is in proper working condition, and the IoT device works properly.
+
+
+
+
+
+
+
+UseCase ID
+
+FS010
+
+Name
+
+Monitor Asset Health
+
+Created By
+
+FieldSense
+
+Created Date
+
+24/02/26
+
+Updated By
+
+— 
+
+Updated Date
+
+— 
+
+Actor
+
+IoT Device
+
+Description
+
+The ioT device constantly or regularly monitors the health of the system
+
+Precondition
+
+The IoT device is connected to the server. It is in working state and is able to send the data of the asset working to the server, where the technician can see it.
+
+Postcondition
+
+The sensor constantly monitors the asset.
+
+Normal Flow
+
+The IoT device monitors the system constantly
+
+It sends the data to the server
+
+Alternate Flow
+
+The sensor is not connected to the system, terminate the use case
+
+The sensor is not in working state, or the sensor is disconnected from the internet, the raise a complaint
+
+Exceptions
+
+No Exceptions
+
+Frequency of Use
+
+Continuous
+
+Priority
+
+High
+
+Business Rule
+
+The sensor constantly monitors asset health, and sends data to the server, where the manager can see the data.
+
+Assumption
+
+The sensor and asset are in perfect working condition. The Asset is registered in the company, and the sensor is able to send data.
+
+
+
+
+
+
+
+UseCase ID
+
+FS011
+
+Name
+
+Detect Anomaly
+
+Created By
+
+FieldSense
+
+Created Date
+
+24/02/26
+
+Updated By
+
+— 
+
+Updated Date
+
+— 
+
+Actor
+
+IoT device
+
+Description
+
+Based on the Threshold Configurations set by the manager, if there is an instance where that configuration is not being followed, detect it.
+
+Precondition
+
+The IoT sensor is installed in the asset registered in the company, and is connected to the server via the internet.
+
+Postcondition
+
+The sensor is able to detect any anomaly or abnormal condition in the asset
+
+Normal Flow
+
+The IoT sensor monitors asset health regularly
+
+If there is an instance where the conditions set by the manager are violated, the sensor detects it.
+
+Alternate Flow
+
+The sensor is not in a working condition, or disconnected from the internet, raise a complaint
+
+There is an issue in the sensor, where even though there is an issue in the asset, yet the sensor is unable to detect it. In that case as well a complaint should be raised by the technician(not manager).
+
+Exceptions
+
+No Exceptions
+
+Frequency of Use
+
+Trigger Frequency
+
+Priority
+
+High
+
+Business Rule
+
+The Sensor is able to detect any abnormal condition in the asset
+
+Assumption
+
+The sensor and asset are in perfect working condition. The Asset is registered in the company, and the sensor is able to send data.
+
+
+
+
+
+
+
+UseCase ID
+
+FS012
+
+Name
+
+Generate Alert
+
+Created By
+
+FieldSense
+
+Created Date
+
+24/02/26
+
+Updated By
+
+— 
+
+Updated Date
+
+— 
+
+Actor
+
+IoT Device
+
+Description
+
+In this use case the IoT device will generate an emergency alert or notification to the manager dashboard about the evolved issues. 
+
+Precondition
+
+The IoT device is connected through the internet to the server, where the manager is able to see if any emergency alert is generated.
+
+Postcondition
+
+The manager will get a notification / alert about the issue that evolved and additionally a ticket may generate.
+
+Normal Flow
+
+The IoT device will detect an anomaly
+
+It will send a notification/ alert to the manager
+
+Additionally a ticket will generate about the issues.
+
+Alternate Flow
+
+Sensors are not connected properly then terminate the use case.
+
+If any alert or notification is not posted by an IoT device then terminate the use case.
+
+Exceptions
+
+No Exception
+
+Frequency of Use
+
+Trigger Frequency
+
+Priority
+
+High
+
+Business Rule
+
+The sensor is able to generate an alert or notification to the manager after detecting an anomaly.
+
+Assumption
+
+The sensor and asset are in perfect working condition. The asset is registered in the company, and the sensor is able to send an alert to the manager after detecting an anomaly.
+
+
+
+
+
+
+
